@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+
+    <style>
+    body {
+        background: #acebc8;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+
+    h2 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .form-container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 800px;
+        box-sizing: border-box;
+    }
+
+    form p {
+        margin-bottom: 15px;
+    }
+
+    label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="file"],
+    select,
+    textarea,
+    input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        height: 80px;
+        resize: vertical;
+    }
+
+    button {
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #218838;
+    }
+
+    a {
+        display: inline-block;
+        margin-top: 15px;
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+        text-align: center;
+        width: 100%;
+    }
+
+    a:hover {
+        color: #0056b3;
+    }
+
+    /* Responsive adjustments */
+    @media screen and (max-width: 480px) {
+        .form-container {
+            padding: 15px;
+            width: 100%;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 8px;
+        }
+    }
+    .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.footer-links a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+    color: #45a049;
+}
+</style>
+
+
+
+</head>
+<body>
+
+    <form method="post" enctype="multipart/form-data">
+         <h2>Add Employee</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+        <div class="footer-links">
+            <a href="{% url 'logout' %}" class="logout-link">Logout</a>
+<!--            <a href="{% url 'employee_list' %}">Back to list</a>-->
+        </div>
+    </form>
+
+</body>
+</html>

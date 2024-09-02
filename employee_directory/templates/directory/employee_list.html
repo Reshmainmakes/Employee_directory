@@ -1,0 +1,142 @@
+<style>
+    /* General table styles */
+    body {
+
+        background: #acebc8;
+        font-family: Arial, sans-serif;
+    }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Header styles */
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+
+}
+
+/* Row hover effect */
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Alternate row colors */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Links inside table cells */
+a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Form inside table cell */
+td form {
+    display: inline;
+}
+
+td form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-left: 10px;
+}
+
+td form button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    th {
+        display: none;
+    }
+    tr {
+        margin-bottom: 15px;
+    }
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-bottom: none;
+    }
+    td:before {
+        content: attr(data-label);
+        font-weight: bold;
+        flex-basis: 50%;
+    }
+}
+.logout-link {
+    display: block;
+    margin-top: 20px;
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+h2, .logout-link {
+    text-align: center;
+    color: #4CAF50;
+}
+</style>
+<h2>Employee List</h2>
+<a href="{% url 'add_employee' %}">Add Employee</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.phone_number }}</td>
+            <td>{{ employee.email_address }}</td>
+            <td>{{ employee.department }}</td>
+            <td>
+                <a href="{% url 'employee_detail' employee.pk %}">View</a> |
+<!--                <form action="{% url 'employee_detail' employee.pk %}" method="post" enctype="multipart/form-data">-->
+<!--                    {% csrf_token %}-->
+<!--                    <input type="file" name="additional_document">-->
+<!--                    <button type="submit">Upload</button>-->
+<!--                </form>-->
+                <a href="{% url 'employee_update' employee.pk %}">Edit</a> |
+                    <a href="{% url 'employee_delete' employee.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><a href="{% url 'logout' %}" class="logout-link">Logout</a></p>
